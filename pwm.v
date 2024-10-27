@@ -43,21 +43,25 @@ always@(posedge clk)begin
                 begin
                     if(ton < period)begin
                        ton <= ton + 5;
+                       direction <= 1'b0;
                     end
-                    else if(ton >= period)begin
+                    else begin
                             direction <= 1'b1;
                             ton <= ton - 5;
                             end
-                     else
-                            direction <= 1'b0;
+                    
                 end        
             else 
                  begin
-                    ton <= ton - 5;
-                    if(ton <= 0)begin
-                    ton <= ton + 5;
-                    direction <= 1'b0;
+                    if(ton > 0)begin
+                        ton <= ton - 5;
+                        direction <= 1'b1;
                     end
+                    else
+                        begin
+                            ton <= ton + 5;
+                            direction <= 1'b0;
+                        end
                 end
         end    
     end    
