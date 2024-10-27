@@ -38,8 +38,9 @@ output reg dout
     
 always@(posedge clk)begin
     if(reset == 1'b0)begin
-        if(nxt_cycle && direction == 1'b0 )
-            begin
+        if(nxt_cycle)begin 
+            if (direction == 1'b0)
+                begin
                     if(ton < period)begin
                        ton <= ton + 5;
                     end
@@ -49,15 +50,16 @@ always@(posedge clk)begin
                             end
                      else
                             direction <= 1'b0;
-            end        
-        else if(nxt_cycle && direction == 1'b1) begin
-            ton <= ton - 5;
-            if(ton <= 0)begin
-                ton <= ton + 5;
-                direction <= 1'b0;
-            end
-        end 
-         
+                end        
+            else 
+                 begin
+                    ton <= ton - 5;
+                    if(ton <= 0)begin
+                    ton <= ton + 5;
+                    direction <= 1'b0;
+                    end
+                end
+        end    
     end    
 end
     
