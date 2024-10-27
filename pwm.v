@@ -15,7 +15,7 @@ output reg dout
         if(reset)begin
             nxt_cycle <= 1'b0;
             ton <= 0;
-            direction = 1'b0;
+            direction <= 1'b0;
             count <= 0;
         end
         else begin
