@@ -13,4 +13,6 @@ reset = 1'b1;
 #10;
 reset = 1'b0;
 end
+initial 
+#50000 $finish;
 endmodule
